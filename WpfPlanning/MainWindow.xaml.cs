@@ -162,10 +162,33 @@ namespace WpfPlanning
             {
                 while (!e.Cancel)
                 {
+                    var newVotes = main.game.Votes.ToArray();
+                    ReportProgress(0, newVotes);
+                    var desc = main.game.Description;
+                    ReportProgress(1, desc);
+                    System.Threading.Thread.Sleep(1000);
                 }
             }
             protected override void OnProgressChanged(ProgressChangedEventArgs e)
             {
+                switch (e.ProgressPercentage)
+                {
+                    case 0:
+                        var newVotes = e.UserState as Vote[];
+
+                        main.votes.Items.Clear();
+
+                        foreach (var v in newVotes)
+                            main.votes.Items.Add(v);
+                        break;
+
+                    case 1:
+                        if(!main.editingDescription)
+                        {
+                            main.description.Text = e.UserState as string;
+                        }
+                        break;
+                }
             }
         }
     }

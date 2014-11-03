@@ -17,7 +17,7 @@
                 <Button x:Name="creategame" IsEnabled="False" Content="" Margin="0,12,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="creategame_Click"/>
             </Grid>
             <Grid x:Name="gamegrid" IsEnabled="False">
-                <ListBox HorizontalAlignment="Left" Width="140" BorderBrush="#33000000" Margin="10,10,5,10"/>
+                <ListBox x:Name="votes" HorizontalAlignment="Left" Width="140" BorderBrush="#33000000" Margin="10,10,5,10"/>
                 <Border x:Name="description_border" Margin="155,10,10,112" BorderBrush="#33000000" BorderThickness="1">
                     <TextBox x:Name="description" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" KeyUp="description_KeyUp"/>
                 </Border>
