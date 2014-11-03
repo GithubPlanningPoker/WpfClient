@@ -53,7 +53,7 @@ namespace WpfPlanning
         }
         void description_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            if (e.Key == Key.Enter && Keyboard.Modifiers.HasFlag(ModifierKeys.Shift))
             {
                 description_border.BorderBrush = initialBorder;
                 description_border.BorderThickness = initialBorderThickness;
