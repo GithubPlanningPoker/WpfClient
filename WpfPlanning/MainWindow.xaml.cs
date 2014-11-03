@@ -48,7 +48,7 @@ namespace WpfPlanning
             }
 
             string gameURL = url.Text.Trim();
-            Match m = Regex.Match(gameURL, @"^(?<domain>http://.*/)game(/(?<id>[a-z0-9]{64}))?/?$");
+            Match m = Regex.Match(gameURL, @"^(?<domain>http://.*/)game(/(?<id>[a-z0-9]{32}))?/?$");
             if (!m.Success)
             {
                 creategame.Content = "";
