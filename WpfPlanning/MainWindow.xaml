@@ -1,6 +1,7 @@
-﻿<Window x:Class="WpfPlanning.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfPlanning" x:Class="WpfPlanning.MainWindow"
         Title="MainWindow" Height="350" Width="525" WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" BorderBrush="#FFCCCCCC" BorderThickness="1">
     <Grid>
         <DockPanel LastChildFill="True">
@@ -16,12 +17,13 @@
                 <TextBox x:Name="url" Height="23" Margin="84,43,10,0" TextWrapping="NoWrap" VerticalAlignment="Top" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp"/>
                 <Button x:Name="creategame" IsEnabled="False" Content="" Margin="0,12,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="creategame_Click"/>
             </Grid>
-            <Grid x:Name="gamegrid" IsEnabled="False">
-                <ListBox x:Name="votes" HorizontalAlignment="Left" Width="140" BorderBrush="#33000000" Margin="10,10,5,10"/>
-                <Border x:Name="description_border" Margin="155,10,10,112" BorderBrush="#33000000" BorderThickness="1">
+            <local:CardTable x:Name="table" Visibility="Collapsed" DockPanel.Dock="Bottom" Height="80" Margin="10,0,10,10"/>
+            <DockPanel x:Name="gamegrid" IsEnabled="False" LastChildFill="True">
+                <ListBox x:Name="votes" Visibility="Visible" DockPanel.Dock="Left" Width="140" BorderBrush="#33000000" Margin="10,10,5,10"/>
+                <Border x:Name="description_border" Margin="5,10,10,10" BorderBrush="#33000000" BorderThickness="1">
                     <TextBox x:Name="description" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" KeyUp="description_KeyUp"/>
                 </Border>
-            </Grid>
+            </DockPanel>
         </DockPanel>
     </Grid>
 </Window>

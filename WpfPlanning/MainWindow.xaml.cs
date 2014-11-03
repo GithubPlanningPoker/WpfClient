@@ -179,7 +179,12 @@ namespace WpfPlanning
                         main.votes.Items.Clear();
 
                         foreach (var v in newVotes)
+                        {
+                            if(v.Name == main.game.User.Name)
+                                main.table.Visibility = v.VoteType.HasValue ? Visibility.Collapsed : Visibility.Visible;
+
                             main.votes.Items.Add(v);
+                        }
                         break;
 
                     case 1:
