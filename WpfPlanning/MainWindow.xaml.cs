@@ -1,6 +1,7 @@
 ﻿using Library;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -25,9 +26,14 @@ namespace WpfPlanning
         private Game game = null;
         private Match newGameMatch = null;
 
+        private VotesWorker worker;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            this.worker = new VotesWorker(this);
+            this.Closing += (s, e) => worker.CancelAsync();
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
@@ -93,11 +99,37 @@ namespace WpfPlanning
 
             login.Visibility = System.Windows.Visibility.Collapsed;
             gamegrid.IsEnabled = true;
+
+            worker.RunWorkerAsync();
         }
 
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Clipboard.SetText(game.Id.Hash);
+        }
+
+        private class VotesWorker : BackgroundWorker
+        {
+            private MainWindow main;
+
+            public VotesWorker(MainWindow main)
+                : base()
+            {
+                this.main = main;
+
+                base.WorkerReportsProgress = true;
+                base.WorkerSupportsCancellation = true;
+            }
+
+            protected override void OnDoWork(DoWorkEventArgs e)
+            {
+                while (!e.Cancel)
+                {
+                }
+            }
+            protected override void OnProgressChanged(ProgressChangedEventArgs e)
+            {
+            }
         }
     }
 }
