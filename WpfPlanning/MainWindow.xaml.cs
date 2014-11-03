@@ -32,7 +32,8 @@ namespace WpfPlanning
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
             base.OnMouseDown(e);
         }
 
@@ -92,6 +93,11 @@ namespace WpfPlanning
 
             login.Visibility = System.Windows.Visibility.Collapsed;
             gamegrid.IsEnabled = true;
+        }
+
+        private void title_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Clipboard.SetText(game.Id.Hash);
         }
     }
 }

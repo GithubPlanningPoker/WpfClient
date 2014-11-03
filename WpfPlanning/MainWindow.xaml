@@ -6,7 +6,7 @@
         <DockPanel LastChildFill="True">
             <Grid DockPanel.Dock="Top" Height="40">
                 <Rectangle Fill="#FF47B4D4" Margin="0"/>
-                <Label x:Name="title" IsEnabled="False" Cursor="Hand" ToolTip="Click to copy game ID" Margin="10,0" VerticalAlignment="Center" FontSize="16" Foreground="White"/>
+                <Label x:Name="title" IsEnabled="False" Cursor="Hand" ToolTip="Click to copy game ID" Margin="10,0" VerticalAlignment="Center" FontSize="16" Foreground="White" MouseDown="title_MouseDown"/>
             </Grid>
             <Grid x:Name="login" DockPanel.Dock="Top" Visibility="Visible" Height="80" VerticalAlignment="Top" Margin="10, -30, 10, 0">
                 <Rectangle DockPanel.Dock="Top" Fill="#FFD0EAF9" Margin="0" Stroke="#FF1866D6"/>
