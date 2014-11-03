@@ -72,6 +72,7 @@
     <Compile Include="Card.xaml.cs">
       <DependentUpon>Card.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CardSelectedEventArgs.cs" />
     <Compile Include="CardTable.xaml.cs">
       <DependentUpon>CardTable.xaml</DependentUpon>
     </Compile>

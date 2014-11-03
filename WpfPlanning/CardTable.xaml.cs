@@ -27,6 +27,8 @@ namespace WpfPlanning
             scroller.MouseMove += scroller_MouseMove;
         }
 
+        public event EventHandler<CardSelectedEventArgs> CardSelected;
+
         void scroller_MouseMove(object sender, MouseEventArgs e)
         {
             var p = e.GetPosition(fullgrid).X - scroller.Margin.Left - 30;
@@ -37,6 +39,16 @@ namespace WpfPlanning
             double multBy = scroller.ExtentWidth - scroller.ActualWidth + 60;
 
             scroller.ScrollToHorizontalOffset(multBy * scale);
+        }
+
+        private void Card_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton != MouseButton.Left)
+                return;
+
+            var card = sender as Card;
+            if (CardSelected != null)
+                CardSelected(this, new CardSelectedEventArgs(card.APIValue));
         }
     }
 }

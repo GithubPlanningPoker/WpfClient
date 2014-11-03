@@ -42,6 +42,13 @@ namespace WpfPlanning
 
             this.initialBorder = description_border.BorderBrush;
             this.initialBorderThickness = description_border.BorderThickness;
+
+            this.table.CardSelected += table_CardSelected;
+        }
+
+        void table_CardSelected(object sender, CardSelectedEventArgs e)
+        {
+            game.Vote(e.VoteType);
         }
 
         void description_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
