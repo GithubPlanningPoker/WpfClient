@@ -23,6 +23,11 @@ namespace WpfPlanning
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool editingDescription = false;
+
+        private Brush initialBorder;
+        private Thickness initialBorderThickness;
+
         private Game game = null;
         private Match newGameMatch = null;
 
@@ -34,6 +39,38 @@ namespace WpfPlanning
 
             this.worker = new VotesWorker(this);
             this.Closing += (s, e) => worker.CancelAsync();
+
+            this.initialBorder = description_border.BorderBrush;
+            this.initialBorderThickness = description_border.BorderThickness;
+        }
+
+        void description_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            editingDescription = true;
+
+            description_border.BorderBrush = Brushes.Orange;
+            description_border.BorderThickness = new Thickness(2);
+        }
+        void description_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                description_border.BorderBrush = initialBorder;
+                description_border.BorderThickness = initialBorderThickness;
+
+                game.Description = description.Text;
+                editingDescription = false;
+                Keyboard.ClearFocus();
+            }
+            else if (e.Key == Key.Escape)
+            {
+                description_border.BorderBrush = initialBorder;
+                description_border.BorderThickness = initialBorderThickness;
+
+                description.Text = game.Description;
+                editingDescription = false;
+                Keyboard.ClearFocus();
+            }
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
