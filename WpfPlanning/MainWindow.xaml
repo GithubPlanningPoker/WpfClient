@@ -4,22 +4,24 @@
         Title="MainWindow" Height="350" Width="525" WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" BorderBrush="#FFCCCCCC" BorderThickness="1">
     <Grid>
         <DockPanel LastChildFill="True">
-            <Rectangle DockPanel.Dock="Top" Fill="#FF47B4D4" Height="40" VerticalAlignment="Top"/>
-            <Grid x:Name="login" DockPanel.Dock="Top" Height="80" VerticalAlignment="Top" Margin="10, -30, 10, 0">
+            <Grid DockPanel.Dock="Top" Height="40">
+                <Rectangle Fill="#FF47B4D4" Margin="0"/>
+                <Label x:Name="title" IsEnabled="False" Cursor="Hand" ToolTip="Click to copy game ID" Margin="10,0" VerticalAlignment="Center" FontSize="16" Foreground="White"/>
+            </Grid>
+            <Grid x:Name="login" DockPanel.Dock="Top" Visibility="Visible" Height="80" VerticalAlignment="Top" Margin="10, -30, 10, 0">
                 <Rectangle DockPanel.Dock="Top" Fill="#FFD0EAF9" Margin="0" Stroke="#FF1866D6"/>
                 <Label Content="Username: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="84,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#33000000"/>
+                <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="84,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp"/>
                 <Label Content="Game URL: " HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="url" HorizontalAlignment="Left" Height="23" Margin="84,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="409" BorderBrush="#33000000"/>
-                <Button x:Name="creategame" IsEnabled="False" Content="" HorizontalAlignment="Left" Margin="418,12,0,0" VerticalAlignment="Top" Width="75"/>
+                <TextBox x:Name="url" Height="23" Margin="84,43,10,0" TextWrapping="NoWrap" VerticalAlignment="Top" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp"/>
+                <Button x:Name="creategame" IsEnabled="False" Content="" Margin="0,12,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="creategame_Click"/>
             </Grid>
-            <Grid IsEnabled="False">
+            <Grid x:Name="gamegrid" IsEnabled="False">
                 <ListBox HorizontalAlignment="Left" Width="140" BorderBrush="#33000000" Margin="10,10,5,10"/>
                 <Border x:Name="description_border" Margin="155,10,10,112" BorderBrush="#33000000" BorderThickness="1">
                     <TextBox x:Name="description" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0"/>
                 </Border>
             </Grid>
         </DockPanel>
-
     </Grid>
 </Window>
