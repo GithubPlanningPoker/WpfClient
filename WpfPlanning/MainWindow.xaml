@@ -3,6 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:WpfPlanning" x:Class="WpfPlanning.MainWindow"
         Title="MainWindow" Height="350" Width="525" WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" BorderBrush="#FFCCCCCC" BorderThickness="1">
+    <Window.Resources>
+        <local:VoteDataTemplateSelector x:Key="voteDataTemplateSelector" />
+    </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
             <Grid DockPanel.Dock="Top" Height="40">
@@ -19,14 +22,24 @@
             </Grid>
             <local:CardTable x:Name="table" Visibility="Collapsed" DockPanel.Dock="Bottom" Height="80" Margin="10,0,10,10"/>
             <DockPanel x:Name="gamegrid" IsEnabled="False" LastChildFill="True">
-                <ListBox x:Name="votes" DockPanel.Dock="Left" Width="140" BorderBrush="#33000000" Margin="10,10,5,10" ItemTemplate="{DynamicResource VisibleVotes}">
+                <ListBox x:Name="votes" DockPanel.Dock="Left" Width="140" BorderBrush="#33000000" Margin="10,10,5,10" ItemTemplateSelector="{StaticResource voteDataTemplateSelector}">
                     <ListBox.Resources>
-                        <DataTemplate x:Key="VisibleVotes">
+                        <DataTemplate x:Key="HiddenVote">
+                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
+                                <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,5,0"/>
+                                <Path Width="11" Height="11" SnapsToDevicePixels="False" Stroke="Green" StrokeThickness="2" Data="M 2,4 C 2,4 3,5 5,13 C 5,13 5,3 12,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate x:Key="NoVote">
+                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
+                                <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate x:Key="VisibleVote">
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
                                 <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,0,0"/>
                                 <Label Content=": " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Padding="0"/>
                                 <Label Content="{Binding VoteAPI, FallbackValue=[Vote]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0"/>
-                                <!-- <local:Card DisplayedValue="{Binding VoteValue, FallbackValue=[Vote]}" Width="50"/> -->
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.Resources>
