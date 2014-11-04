@@ -199,7 +199,6 @@ namespace WpfPlanning
 
                             main.votes.Items.Add(new WpfVote(v));
                         }
-                        main.votes.ItemTemplateSelector = new VoteDataTemplateSelector();
                         break;
 
                     case 1:
