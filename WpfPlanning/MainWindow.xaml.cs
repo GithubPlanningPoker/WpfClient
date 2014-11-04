@@ -138,6 +138,8 @@ namespace WpfPlanning
             else
                 game = Game.JoinGame(domain, new Id(id), usr);
 
+            btnClear.Visibility = game.Host ? Visibility.Visible : Visibility.Collapsed;
+
             title.Content = "Planning @ " + domain;
             title.IsEnabled = true;
 
@@ -150,6 +152,11 @@ namespace WpfPlanning
         private void title_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Clipboard.SetText(game.Id.Hash);
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            game.ClearVotes();
         }
 
         private class VotesWorker : BackgroundWorker
