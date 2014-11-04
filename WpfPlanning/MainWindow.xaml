@@ -11,7 +11,7 @@
             <Grid DockPanel.Dock="Top" Height="40">
                 <Rectangle Fill="#FF47B4D4" Margin="0"/>
                 <Label x:Name="title" IsEnabled="False" Cursor="Hand" ToolTip="Click to copy game ID" Margin="10,0,50,0" VerticalAlignment="Center" FontSize="16" Foreground="White" MouseDown="title_MouseDown"/>
-                <Image Visibility="Visible" Cursor="Hand" ToolTip="Create this issue on GitHub" Height="32" Width="32" Margin="0,4,4,4" HorizontalAlignment="Right">
+                <Image x:Name="github" Visibility="Collapsed" Cursor="Hand" ToolTip="Create this issue on GitHub" Height="32" Width="32" Margin="0,4,4,4" HorizontalAlignment="Right" MouseDown="github_MouseDown">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Setter Property="Source" Value="GitHub-Mark-Light-32px.png"/>
@@ -33,7 +33,7 @@
                 <Button x:Name="creategame" IsEnabled="False" Content="" Margin="0,12,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="creategame_Click"/>
             </Grid>
             <local:CardTable x:Name="table" Visibility="Collapsed" DockPanel.Dock="Bottom" Height="80" Margin="10,0,10,10"/>
-            <DockPanel x:Name="gamegrid" IsEnabled="True" LastChildFill="True">
+            <DockPanel x:Name="gamegrid" IsEnabled="False" LastChildFill="True">
                 <Border BorderBrush="#33000000" DockPanel.Dock="Left" Width="140" Margin="10,10,5,10" BorderThickness="1">
                     <DockPanel LastChildFill="True">
                         <Button x:Name="btnClear" Visibility="Collapsed" DockPanel.Dock="Top" Content="Clear Votes" Margin="5" Click="btnClear_Click"/>

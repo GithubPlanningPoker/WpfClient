@@ -159,6 +159,12 @@ namespace WpfPlanning
             game.ClearVotes();
         }
 
+        private void github_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("GITHUB!");
+            game.ResetGame();
+        }
+
         private class VotesWorker : BackgroundWorker
         {
             private MainWindow main;
@@ -192,13 +198,23 @@ namespace WpfPlanning
 
                         main.votes.Items.Clear();
 
+                        bool allvoted = true;
                         foreach (var v in newVotes)
                         {
                             if (v.Name == main.game.User.Name)
                                 main.table.Visibility = v.VoteType.HasValue ? Visibility.Collapsed : Visibility.Visible;
 
+                            if (!v.VoteType.HasValue)
+                                allvoted = false;
+
                             main.votes.Items.Add(new WpfVote(v));
                         }
+
+                        if (allvoted && main.game.Host)
+                            main.github.Visibility = Visibility.Visible;
+                        else
+                            main.github.Visibility = Visibility.Collapsed;
+
                         break;
 
                     case 1:
