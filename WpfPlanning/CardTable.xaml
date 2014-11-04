@@ -17,20 +17,20 @@
                         <Setter Property="Width" Value="50"/>
                     </Style>
                 </StackPanel.Resources>
-                <local:Card DisplayedValue="0" APIValue="0" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="½" APIValue="half" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="1" APIValue="1" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="2" APIValue="2" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="3" APIValue="3" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="5" APIValue="5" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="8" APIValue="8" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="13" APIValue="13" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="20" APIValue="20" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="40" APIValue="40" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="100" APIValue="100" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="??" APIValue="?" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="∞" APIValue="inf" MouseUp="Card_MouseUp"/>
-                <local:Card DisplayedValue="B" APIValue="break" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Zero" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Half" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="One" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Two" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Three" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Five" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Eight" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Thirteen" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Twenty" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Fourty" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="OneHundred" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="QuestionMark" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Infinite" MouseUp="Card_MouseUp"/>
+                <local:Card DisplayedValue="Break" MouseUp="Card_MouseUp"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

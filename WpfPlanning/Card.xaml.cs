@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,31 +26,46 @@ namespace WpfPlanning
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("CardValue", typeof(string), typeof(Card), new PropertyMetadata("0"));
-        public string DisplayedValue
+        public static readonly DependencyProperty CardValueProperty = DependencyProperty.Register(
+            "CardValue",
+            typeof(VoteTypes),
+            typeof(Card),
+            new PropertyMetadata(VoteTypes.Zero));
+
+        public VoteTypes DisplayedValue
         {
-            get { return (string)this.GetValue(ValueProperty); }
+            get { return (VoteTypes)this.GetValue(CardValueProperty); }
             set
             {
-                this.label.Content = value;
-                this.SetValue(ValueProperty, value);
+                this.SetValue(CardValueProperty, value);
+                this.label.Content = getVisual(value);
             }
         }
 
-        public static readonly DependencyProperty APIValueProperty = DependencyProperty.Register("CardAPIValue", typeof(string), typeof(Card), new PropertyMetadata((string)null));
-        public string APIValue
+        private string getVisual(VoteTypes? votetype)
         {
-            get { return (string)this.GetValue(APIValueProperty); }
-            set
+            if (!votetype.HasValue)
+                return "";
+
+            switch (votetype.Value)
             {
-                if (value == null)
-                    throw new ArgumentNullException("value", "The APIValue property must be set.");
+                case VoteTypes.Zero: return "0";
+                case VoteTypes.Half: return "½";
+                case VoteTypes.One: return "1";
+                case VoteTypes.Two: return "2";
+                case VoteTypes.Three: return "3";
+                case VoteTypes.Five: return "5";
+                case VoteTypes.Eight: return "8";
+                case VoteTypes.Thirteen: return "13";
+                case VoteTypes.Twenty: return "20";
+                case VoteTypes.Fourty: return "40";
+                case VoteTypes.OneHundred: return "100";
+                case VoteTypes.Infinite: return "∞";
+                case VoteTypes.QuestionMark: return "??";
+                case VoteTypes.Break: return "B";
 
-                Library.VoteTypes type;
-                if (!Library.VoteTypesExtension.TryParse(value, out type))
-                    throw new ArgumentException("Unable to parse " + value + " as a vote.");
-
-                this.SetValue(APIValueProperty, value);
+                default:
+                    return "";
             }
         }
     }

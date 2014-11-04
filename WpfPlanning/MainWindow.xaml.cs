@@ -187,15 +187,15 @@ namespace WpfPlanning
 
                         foreach (var v in newVotes)
                         {
-                            if(v.Name == main.game.User.Name)
+                            if (v.Name == main.game.User.Name)
                                 main.table.Visibility = v.VoteType.HasValue ? Visibility.Collapsed : Visibility.Visible;
 
-                            main.votes.Items.Add(v);
+                            main.votes.Items.Add(new WpfVote(v));
                         }
                         break;
 
                     case 1:
-                        if(!main.editingDescription)
+                        if (!main.editingDescription)
                         {
                             main.description.Text = e.UserState as string;
                         }

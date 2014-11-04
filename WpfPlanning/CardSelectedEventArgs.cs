@@ -9,20 +9,13 @@ namespace WpfPlanning
 {
     public class CardSelectedEventArgs : EventArgs
     {
-        private string value;
         private VoteTypes voteType;
 
-        public CardSelectedEventArgs(string value)
+        public CardSelectedEventArgs(VoteTypes voteType)
         {
-            this.value = value;
-            if (!VoteTypesExtension.TryParse(value, out this.voteType))
-                throw new ArgumentException("Value " + value + " cannot be converted to a VoteTypes.");
+            this.voteType = voteType;
         }
 
-        public string Value
-        {
-            get { return value; }
-        }
         public VoteTypes VoteType
         {
             get { return voteType; }

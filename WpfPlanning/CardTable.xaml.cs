@@ -48,7 +48,7 @@ namespace WpfPlanning
 
             var card = sender as Card;
             if (CardSelected != null)
-                CardSelected(this, new CardSelectedEventArgs(card.APIValue));
+                CardSelected(this, new CardSelectedEventArgs(card.DisplayedValue));
         }
     }
 }

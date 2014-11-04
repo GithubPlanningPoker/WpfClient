@@ -19,7 +19,18 @@
             </Grid>
             <local:CardTable x:Name="table" Visibility="Collapsed" DockPanel.Dock="Bottom" Height="80" Margin="10,0,10,10"/>
             <DockPanel x:Name="gamegrid" IsEnabled="False" LastChildFill="True">
-                <ListBox x:Name="votes" Visibility="Visible" DockPanel.Dock="Left" Width="140" BorderBrush="#33000000" Margin="10,10,5,10"/>
+                <ListBox x:Name="votes" DockPanel.Dock="Left" Width="140" BorderBrush="#33000000" Margin="10,10,5,10" ItemTemplate="{DynamicResource VisibleVotes}">
+                    <ListBox.Resources>
+                        <DataTemplate x:Key="VisibleVotes">
+                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
+                                <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,0,0"/>
+                                <Label Content=": " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Padding="0"/>
+                                <Label Content="{Binding VoteAPI, FallbackValue=[Vote]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0"/>
+                                <!-- <local:Card DisplayedValue="{Binding VoteValue, FallbackValue=[Vote]}" Width="50"/> -->
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
                 <Border x:Name="description_border" Margin="5,10,10,10" BorderBrush="#33000000" BorderThickness="1">
                     <TextBox x:Name="description" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" KeyUp="description_KeyUp"/>
                 </Border>
