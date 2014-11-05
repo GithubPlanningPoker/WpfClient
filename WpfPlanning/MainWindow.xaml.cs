@@ -44,6 +44,15 @@ namespace WpfPlanning
             this.initialBorderThickness = description_border.BorderThickness;
 
             this.table.CardSelected += table_CardSelected;
+
+            username.Text = Properties.Settings.Default.username;
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            Properties.Settings.Default.username = username.Text;
+            Properties.Settings.Default.Save();
+            base.OnClosing(e);
         }
 
         void table_CardSelected(object sender, CardSelectedEventArgs e)
