@@ -97,7 +97,15 @@ namespace WpfPlanning
                 return;
             }
 
-            string gameURL = url.Text.Trim();
+            string selectedDomain = domain.SelectedValue as string;
+            if (selectedDomain == null)
+            {
+                creategame.Content = "";
+                creategame.IsEnabled = false;
+                return;
+            }
+
+            string gameURL = selectedDomain + gameid.Text.Trim();
             Match m = Regex.Match(gameURL, @"^(?<domain>http://.*/)game(/(?<id>[a-z0-9]{32}))?/?$");
             if (!m.Success)
             {
