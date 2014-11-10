@@ -106,7 +106,7 @@ namespace WpfPlanning
                 return;
             }
 
-            string selectedDomain = domain.SelectedValue as string;
+            string selectedDomain = domain.Text as string;
             if (selectedDomain == null)
             {
                 creategame.Content = "";
