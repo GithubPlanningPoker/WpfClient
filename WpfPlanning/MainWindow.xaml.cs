@@ -30,7 +30,7 @@ namespace WpfPlanning
 
         private Game game = null;
         private Match newGameMatch = null;
-
+            
         private VotesWorker worker;
 
         public MainWindow()
@@ -219,9 +219,9 @@ namespace WpfPlanning
                         foreach (var v in newVotes)
                         {
                             if (v.Name == main.game.User.Name)
-                                main.table.Visibility = v.VoteType.HasValue ? Visibility.Collapsed : Visibility.Visible;
+                                main.table.Visibility = v.HasVoted ? Visibility.Collapsed : Visibility.Visible;
 
-                            if (!v.VoteType.HasValue)
+                            if (!v.HasVoted)
                                 allvoted = false;
 
                             main.votes.Items.Add(new WpfVote(v));

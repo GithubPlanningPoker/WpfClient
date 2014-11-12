@@ -16,7 +16,7 @@ namespace WpfPlanning
 
                 bool all = true;
                 foreach (WpfVote obj in list.Items)
-                    if (!obj.VoteType.HasValue)
+                    if (!obj.HasVoted)
                     {
                         all = false;
                         break;
@@ -24,7 +24,7 @@ namespace WpfPlanning
 
                 if (all)
                     return list.FindResource("VisibleVote") as DataTemplate;
-                else if (vote.VoteType.HasValue)
+                else if (vote.HasVoted)
                     return list.FindResource("HiddenVote") as DataTemplate;
                 else
                     return list.FindResource("NoVote") as DataTemplate;

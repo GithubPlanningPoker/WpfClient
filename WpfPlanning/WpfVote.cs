@@ -22,13 +22,13 @@ namespace WpfPlanning
         }
         public string VoteAPI
         {
-            get { return vote.VoteType.HasValue ? vote.VoteType.Value.ToAPIString() : "null"; }
+            get { return vote.HasVoted ? vote.VoteType.ToAPIString() : "null"; }
         }
-        public string HasVote
+        public bool HasVoted
         {
-            get { return vote.VoteType.HasValue ? "Voted" : ""; }
+            get { return vote.HasVoted; }
         }
-        public VoteTypes? VoteType
+        public VoteTypes VoteType
         {
             get { return vote.VoteType; }
         }
