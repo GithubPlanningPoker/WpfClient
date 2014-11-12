@@ -29,7 +29,7 @@
                 <Label Content="Username: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="84,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp"/>
                 <Label Content="Domain: " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="domain" HorizontalAlignment="Left" Margin="84,40,0,0" VerticalAlignment="Top" Width="409" Height="23" Background="#FFFFFFFF" BorderBrush="#33000000" SelectedIndex="0" SelectedValuePath="Content" IsEditable="True">
+                <ComboBox x:Name="domain" HorizontalAlignment="Left" Margin="84,40,0,0" VerticalAlignment="Top" Width="409" Height="23" Background="#FFFFFFFF" BorderBrush="#33000000" SelectedIndex="0" SelectedValuePath="Content" IsEditable="True" SelectionChanged="domain_SelectionChanged" TextInput="domain_TextInput">
                     <ListBoxItem Content="http://ghpp.mikaelec.com/api/game/"/>
                     <ListBoxItem Content="http://ghpp.brunothalmann.com/game/"/>
                 </ComboBox>

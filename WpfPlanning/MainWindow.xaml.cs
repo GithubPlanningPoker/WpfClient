@@ -96,6 +96,15 @@ namespace WpfPlanning
             base.OnMouseDown(e);
         }
 
+        private void domain_TextInput(object sender, TextCompositionEventArgs e)
+        {
+            login_TextChanged(null, null);
+        }
+        private void domain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            login_TextChanged(null, null);
+        }
+
         private void login_TextChanged(object sender, TextChangedEventArgs e)
         {
             string usr = username.Text.Trim();
