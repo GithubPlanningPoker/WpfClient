@@ -137,6 +137,9 @@ namespace WpfPlanning
 
         private void login_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (creategame == null || domain == null || gameid == null)
+                return;
+
             string usr = username.Text.Trim();
             if (usr.Length == 0)
             {
@@ -145,7 +148,8 @@ namespace WpfPlanning
                 return;
             }
 
-            string selectedDomain = domain.Text as string;
+            var item = (domain.SelectedItem as ListBoxItem);
+            string selectedDomain = item == null ? domain.Text as string : (item.Content as string);
             if (selectedDomain == null)
             {
                 creategame.Content = "";
