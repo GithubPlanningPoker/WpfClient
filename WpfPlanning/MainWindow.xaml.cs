@@ -24,13 +24,14 @@ namespace WpfPlanning
     public partial class MainWindow : Window
     {
         private bool editingDescription = false;
+        private bool editingTitle = false;
 
         private Brush initialBorder;
         private Thickness initialBorderThickness;
 
         private Game game = null;
         private Match newGameMatch = null;
-            
+
         private VotesWorker worker;
 
         public MainWindow()
@@ -85,6 +86,35 @@ namespace WpfPlanning
 
                 description.Text = game.Description;
                 editingDescription = false;
+                Keyboard.ClearFocus();
+            }
+        }
+
+        void issuetitle_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            editingTitle = true;
+
+            issuetitle_border.BorderBrush = Brushes.Orange;
+            issuetitle_border.BorderThickness = new Thickness(2);
+        }
+        void issuetitle_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                issuetitle_border.BorderBrush = initialBorder;
+                issuetitle_border.BorderThickness = initialBorderThickness;
+
+                game.Title = issuetitle.Text;
+                editingTitle = false;
+                Keyboard.ClearFocus();
+            }
+            else if (e.Key == Key.Escape)
+            {
+                issuetitle_border.BorderBrush = initialBorder;
+                issuetitle_border.BorderThickness = initialBorderThickness;
+
+                issuetitle.Text = game.Description;
+                editingTitle = false;
                 Keyboard.ClearFocus();
             }
         }
@@ -212,6 +242,8 @@ namespace WpfPlanning
                     ReportProgress(0, newVotes);
                     var desc = main.game.Description;
                     ReportProgress(1, desc);
+                    var title = main.game.Title;
+                    ReportProgress(2, title);
                     System.Threading.Thread.Sleep(1000);
                 }
             }
@@ -247,6 +279,13 @@ namespace WpfPlanning
                         if (!main.editingDescription)
                         {
                             main.description.Text = e.UserState as string;
+                        }
+                        break;
+
+                    case 2:
+                        if (!main.editingTitle)
+                        {
+                            main.issuetitle.Text = e.UserState as string;
                         }
                         break;
                 }
