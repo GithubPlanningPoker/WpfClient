@@ -5,24 +5,21 @@
         Title="MainWindow" Height="350" Width="525" WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" BorderBrush="#FFCCCCCC" BorderThickness="1" Icon="icon_32.png">
     <Window.Resources>
         <local:VoteDataTemplateSelector x:Key="voteDataTemplateSelector" />
+        <Style x:Key="githubIcon" TargetType="Image">
+            <Setter Property="Source" Value="GitHub-Mark-Light-32px.png"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Source" Value="GitHub-Mark-32px.png"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
             <Grid DockPanel.Dock="Top" Height="40">
                 <Rectangle Fill="#FF47B4D4" Margin="0"/>
                 <Label x:Name="title" IsEnabled="False" Cursor="Hand" ToolTip="Click to copy game ID" Margin="10,0,50,0" VerticalAlignment="Center" FontSize="16" Foreground="White" MouseDown="title_MouseDown"/>
-                <Image x:Name="github" Visibility="Collapsed" Cursor="Hand" ToolTip="Create this issue on GitHub" Height="32" Width="32" Margin="0,4,4,4" HorizontalAlignment="Right" MouseDown="github_MouseDown">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source" Value="GitHub-Mark-Light-32px.png"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Source" Value="GitHub-Mark-32px.png"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
+                <Image x:Name="github" Visibility="Visible" Cursor="Hand" ToolTip="Create this issue on GitHub" Height="32" Width="32" Margin="0,4,4,4" HorizontalAlignment="Right" Style="{StaticResource githubIcon}" MouseDown="github_MouseDown"/>
             </Grid>
             <Grid x:Name="login" DockPanel.Dock="Top" Visibility="Visible" Height="106" VerticalAlignment="Top" Margin="10, -30, 10, 0">
                 <Rectangle DockPanel.Dock="Top" Fill="#FFD0EAF9" Margin="0" Stroke="#FF1866D6"/>
