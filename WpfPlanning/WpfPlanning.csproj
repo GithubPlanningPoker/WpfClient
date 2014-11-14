@@ -54,6 +54,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="VoteDataTemplateSelector.cs" />
+    <Compile Include="WaterMarkAdorner.cs" />
+    <Compile Include="WaterMarkService.cs" />
     <Compile Include="WpfVote.cs" />
     <Page Include="Card.xaml">
       <SubType>Designer</SubType>
