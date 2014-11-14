@@ -16,26 +16,33 @@
     </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
-            <Grid DockPanel.Dock="Top" Height="40">
-                <Rectangle Fill="#FF47B4D4" Margin="0"/>
-                <Label x:Name="title" IsEnabled="False" Cursor="Hand" ToolTip="Click to copy game ID" Margin="10,0,50,0" VerticalAlignment="Center" FontSize="16" Foreground="White" MouseDown="title_MouseDown"/>
-                <Image x:Name="github" Visibility="Visible" Cursor="Hand" ToolTip="Create this issue on GitHub" Height="32" Width="32" Margin="0,4,4,4" HorizontalAlignment="Right" Style="{StaticResource githubIcon}" MouseDown="github_MouseDown"/>
-            </Grid>
-            <Grid x:Name="login" DockPanel.Dock="Top" Visibility="Visible" Height="106" VerticalAlignment="Top" Margin="10, -30, 10, 0">
-                <Rectangle DockPanel.Dock="Top" Fill="#FFD0EAF9" Margin="0" Stroke="#FF1866D6"/>
-                <Label Content="Username: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="84,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp"/>
-                <Label Content="Domain: " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="domain" Margin="84,40,12,0" VerticalAlignment="Top" Height="23" Background="#FFFFFFFF" BorderBrush="#33000000" SelectedIndex="0" SelectedValuePath="Content" SelectionChanged="domain_SelectionChanged">
-                    <ListBoxItem Content="http://ghpp.mikaelec.com/api/game/"/>
-                    <ListBoxItem Content="http://ghpp.brunothalmann.com/game/"/>
-                </ComboBox>
-                <Label Content="Game ID: " HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="gameid" Height="23" Margin="84,71,10,0" TextWrapping="NoWrap" VerticalAlignment="Top" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp"/>
-                <Button x:Name="creategame" IsEnabled="False" Content="" Margin="0,12,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="creategame_Click"/>
-            </Grid>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Background="#FF47B4D4">
+                <Grid Visibility="Visible" Height="40">
+                    <Label x:Name="title_explanation" Content="Click to change" FontSize="10" Foreground="#FFB7DEFF" Margin="0,20,0,-10" />
+                    <Label x:Name="title" Content="http://ghpp.mikaelec.com/" Cursor="Hand" Margin="10,0,50,0" VerticalAlignment="Center" FontSize="16" Foreground="White" MouseDown="title_MouseDown"/>
+                    <Image x:Name="github" Cursor="Hand" ToolTip="Create this issue on GitHub" Height="32" Width="32" Margin="0,4,4,4" HorizontalAlignment="Right" Style="{StaticResource githubIcon}" MouseDown="github_MouseDown"/>
+                </Grid>
+                <StackPanel Visibility="Collapsed" Orientation="Vertical">
+                    <Label Content="Select domain below:" Padding="5" FontSize="16" FontWeight="Bold" Foreground="White"/>
+                    <Label Content="http://ghpp.mikaelec.com/game/" Padding="5" FontSize="12" Foreground="White" MouseDown="title_MouseDown"/>
+                    <Label Content="http://ghpp.brunothalmann.com/game/" Padding="5" FontSize="12" Foreground="White" MouseDown="title_MouseDown"/>
+                </StackPanel>
+                <Grid x:Name="userinfo_grid" Visibility="Visible">
+                    <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="10,12,0,10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp">
+                        <local:WatermarkService.Watermark>
+                            <TextBlock Margin="5,3">Username...</TextBlock>
+                        </local:WatermarkService.Watermark>
+                    </TextBox>
+                    <TextBox x:Name="gameid" Height="23" Margin="135,12,90,10" TextWrapping="NoWrap" VerticalAlignment="Top" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp">
+                        <local:WatermarkService.Watermark>
+                            <TextBlock Margin="5,3">Insert game ID if you are joining a game...</TextBlock>
+                        </local:WatermarkService.Watermark>
+                    </TextBox>
+                    <Button x:Name="creategame" IsEnabled="False" Content="" Margin="0,12,10,10" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="creategame_Click"/>
+                </Grid>
+            </StackPanel>
             <local:CardTable x:Name="table" Visibility="Collapsed" DockPanel.Dock="Bottom" Height="80" Margin="10,0,10,10"/>
-            <DockPanel x:Name="gamegrid" IsEnabled="False" LastChildFill="True">
+            <DockPanel x:Name="gamegrid" Visibility="Hidden" LastChildFill="True">
                 <Border BorderBrush="#33000000" DockPanel.Dock="Left" Width="140" Margin="10,10,5,10" BorderThickness="1">
                     <DockPanel LastChildFill="True" Background="White">
                         <Button x:Name="btnClear" Visibility="Collapsed" DockPanel.Dock="Top" Content="Clear Votes" Margin="5" Click="btnClear_Click"/>
@@ -63,12 +70,22 @@
                         </ListBox>
                     </DockPanel>
                 </Border>
-                <Border x:Name="issuetitle_border" DockPanel.Dock="Top" Margin="5,10,10,0" BorderBrush="#33000000" BorderThickness="1">
-                    <TextBox x:Name="issuetitle" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="issuetitle_GotKeyboardFocus" KeyUp="issuetitle_KeyUp"/>
-                </Border>
-                <Border x:Name="description_border" Margin="5,10,10,10" BorderBrush="#33000000" BorderThickness="1">
-                    <TextBox x:Name="description" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" KeyUp="description_KeyUp"/>
-                </Border>
+                <Grid DockPanel.Dock="Top" Margin="5,10,10,0">
+                    <TextBox x:Name="issuetitle" FontSize="22" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="issuetitle_GotKeyboardFocus" KeyUp="issuetitle_KeyUp">
+                        <local:WatermarkService.Watermark>
+                            <TextBlock Margin="3,1" FontSize="22">Issue title...</TextBlock>
+                        </local:WatermarkService.Watermark>
+                    </TextBox>
+                    <Label x:Name="title_hint" Margin="0,12,0,-10" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" FontSize="9" Content="Ctrl+Enter will send your title to the server..."/>
+                </Grid>
+                <Grid Margin="5,10,10,10">
+                    <TextBox x:Name="description" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" KeyUp="description_KeyUp">
+                        <local:WatermarkService.Watermark>
+                            <TextBlock Margin="5,3">Description...</TextBlock>
+                        </local:WatermarkService.Watermark>
+                    </TextBox>
+                    <Label x:Name="description_hint" Margin="0,0,0,0" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="9" Content="Ctrl+Enter will send your description to the server..."/>
+                </Grid>
             </DockPanel>
         </DockPanel>
     </Grid>
