@@ -22,6 +22,24 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <DataTemplate x:Key="HiddenVote">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
+                <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,5,0"/>
+                <Path Width="11" Height="11" SnapsToDevicePixels="False" Stroke="Green" StrokeThickness="2" Data="M 2,4 C 2,4 3,5 5,13 C 5,13 5,3 12,0"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="NoVote">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
+                <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,0,0"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="VisibleVote">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
+                <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,0,0"/>
+                <Label Content=": " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Padding="0"/>
+                <Label Content="{Binding VoteAPI, FallbackValue=[Vote]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0"/>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
@@ -57,26 +75,6 @@
                     <DockPanel LastChildFill="True" Background="White">
                         <Button x:Name="btnClear" Visibility="Collapsed" DockPanel.Dock="Top" Content="Clear Votes" Margin="5" Click="btnClear_Click"/>
                         <ListBox x:Name="votes" BorderThickness="0" Margin="0" ItemTemplateSelector="{StaticResource voteDataTemplateSelector}" ContextMenuOpening="votes_ContextMenuOpening">
-                            <ListBox.Resources>
-                                <DataTemplate x:Key="HiddenVote">
-                                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
-                                        <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,5,0"/>
-                                        <Path Width="11" Height="11" SnapsToDevicePixels="False" Stroke="Green" StrokeThickness="2" Data="M 2,4 C 2,4 3,5 5,13 C 5,13 5,3 12,0"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                                <DataTemplate x:Key="NoVote">
-                                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
-                                        <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,0,0"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                                <DataTemplate x:Key="VisibleVote">
-                                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
-                                        <Label Content="{Binding UserName, FallbackValue=[Name]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0,0,0,0"/>
-                                        <Label Content=": " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Padding="0"/>
-                                        <Label Content="{Binding VoteAPI, FallbackValue=[Vote]}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Padding="0"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.Resources>
                             <ListBox.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem x:Name="kick_menuitem" Click="kick_Click"/>

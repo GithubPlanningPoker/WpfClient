@@ -23,11 +23,11 @@ namespace WpfPlanning
                     }
 
                 if (all)
-                    return list.FindResource("VisibleVote") as DataTemplate;
+                    return window.FindResource("VisibleVote") as DataTemplate;
                 else if (vote.HasVoted)
-                    return list.FindResource("HiddenVote") as DataTemplate;
+                    return window.FindResource("HiddenVote") as DataTemplate;
                 else
-                    return list.FindResource("NoVote") as DataTemplate;
+                    return window.FindResource("NoVote") as DataTemplate;
             }
 
             return null;
