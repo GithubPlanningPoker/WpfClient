@@ -264,7 +264,7 @@ namespace WpfPlanning
                     ReportProgress(1, desc);
                     var title = main.game.Title;
                     ReportProgress(2, title);
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(500);
                 }
             }
             protected override void OnProgressChanged(ProgressChangedEventArgs e)
