@@ -272,21 +272,67 @@ namespace WpfPlanning
                 switch (e.ProgressPercentage)
                 {
                     case 0:
+                        bool somethingChanged = false;
                         var newVotes = e.UserState as Vote[];
+                        Array.Sort(newVotes, (x, y) => x.Name.CompareTo(y.Name));
 
-                        main.votes.Items.Clear();
-
-                        bool allvoted = true;
-                        foreach (var v in newVotes)
+                        int n = 0, o = 0;
+                        while (n < newVotes.Length || o < main.votes.Items.Count)
                         {
-                            if (v.Name == main.game.User.Name)
-                                main.table.Visibility = v.HasVoted ? Visibility.Collapsed : Visibility.Visible;
+                            if (n >= newVotes.Length)
+                            {
+                                somethingChanged = true;
+                                while (o < main.votes.Items.Count)
+                                    main.votes.Items.RemoveAt(o);
+                                break;
+                            }
+                            else if (o >= main.votes.Items.Count)
+                            {
+                                somethingChanged = true;
+                                for (; n < newVotes.Length; n++)
+                                    main.votes.Items.Add(new WpfVote(newVotes[n]));
+                                break;
+                            }
+                            else
+                            {
+                                var nV = newVotes[n];
+                                var oV = main.votes.Items[o] as WpfVote;
 
-                            if (!v.HasVoted)
-                                allvoted = false;
+                                int cmp = nV.Name.CompareTo(oV.UserName);
+                                if (cmp < 0)
+                                {
+                                    main.votes.Items.Insert(o, new WpfVote(newVotes[n]));
+                                    n++; o++;
+                                }
+                                else if (cmp > 0)
+                                {
+                                    main.votes.Items.RemoveAt(o);
+                                }
+                                else
+                                {
+                                    if (!nV.HasVoted && oV.HasVoted)
+                                    {
+                                        oV.ClearVote();
+                                        somethingChanged = true;
+                                    }
+                                    else if (nV.HasVoted && (!oV.HasVoted || nV.VoteType != oV.VoteType))
+                                    {
+                                        oV.VoteType = nV.VoteType;
+                                        somethingChanged = true;
+                                    }
 
-                            main.votes.Items.Add(new WpfVote(v));
+                                    n++; o++;
+                                }
+                            }
                         }
+
+                        if (somethingChanged)
+                            main.votes.ItemTemplateSelector = new VoteDataTemplateSelector();
+
+                        var me = (from WpfVote v in main.votes.Items where v.UserName == main.game.User.Name select v).First();
+                        main.table.Visibility = me.HasVoted ? Visibility.Collapsed : Visibility.Visible;
+
+                        var allvoted = (from WpfVote v in main.votes.Items where !v.HasVoted select v).Any();
 
                         if (allvoted && main.game.Host)
                             main.github.Visibility = Visibility.Visible;
