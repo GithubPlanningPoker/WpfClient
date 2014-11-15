@@ -29,7 +29,7 @@
                 <Grid x:Name="domain_display" Visibility="Visible" Height="40">
                     <Label x:Name="domain_explanation" Content="Click to change" FontSize="10" Foreground="#FFB7DEFF" Margin="0,20,0,-10" />
                     <Label x:Name="domain" Content="http://ghpp.mikaelec.com/api/game/" Style="{StaticResource clickableLabel}" Margin="10,-10,50,0" VerticalAlignment="Center" FontSize="16" MouseDown="domain_MouseDown"/>
-                    <Image x:Name="github" Cursor="Hand" ToolTip="Create this issue on GitHub" Height="32" Width="32" Margin="0,4,4,4" HorizontalAlignment="Right" Style="{StaticResource githubIcon}" MouseDown="github_MouseDown"/>
+                    <Image x:Name="github" Visibility="Hidden" Cursor="Hand" ToolTip="Create this issue on GitHub" Height="32" Width="32" Margin="0,4,4,4" HorizontalAlignment="Right" Style="{StaticResource githubIcon}" MouseDown="github_MouseDown"/>
                 </Grid>
                 <StackPanel x:Name="domain_list" Visibility="Collapsed" Orientation="Vertical">
                     <Label Content="Select domain below:" Padding="5" FontSize="16" FontWeight="Bold" Foreground="White"/>
