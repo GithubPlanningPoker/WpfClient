@@ -13,19 +13,28 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="clickableLabel" TargetType="Label">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="LightBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Background="#FF47B4D4">
                 <Grid x:Name="domain_display" Visibility="Visible" Height="40">
                     <Label x:Name="domain_explanation" Content="Click to change" FontSize="10" Foreground="#FFB7DEFF" Margin="0,20,0,-10" />
-                    <Label x:Name="domain" Content="http://ghpp.mikaelec.com/api/game/" Cursor="Hand" Margin="10,0,50,0" VerticalAlignment="Center" FontSize="16" Foreground="White" MouseDown="domain_MouseDown"/>
+                    <Label x:Name="domain" Content="http://ghpp.mikaelec.com/api/game/" Style="{StaticResource clickableLabel}" Margin="10,-10,50,0" VerticalAlignment="Center" FontSize="16" MouseDown="domain_MouseDown"/>
                     <Image x:Name="github" Cursor="Hand" ToolTip="Create this issue on GitHub" Height="32" Width="32" Margin="0,4,4,4" HorizontalAlignment="Right" Style="{StaticResource githubIcon}" MouseDown="github_MouseDown"/>
                 </Grid>
                 <StackPanel x:Name="domain_list" Visibility="Collapsed" Orientation="Vertical">
                     <Label Content="Select domain below:" Padding="5" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                    <Label Content="http://ghpp.mikaelec.com/api/game/" Padding="5" FontSize="12" Foreground="White" MouseDown="domain_MouseDown"/>
-                    <Label Content="http://ghpp.brunothalmann.com/game/" Padding="5" FontSize="12" Foreground="White" MouseDown="domain_MouseDown"/>
+                    <Label Content="http://ghpp.mikaelec.com/api/game/" Style="{StaticResource clickableLabel}" Padding="5" FontSize="12" MouseDown="domain_MouseDown"/>
+                    <Label Content="http://ghpp.brunothalmann.com/game/" Style="{StaticResource clickableLabel}" Padding="5" FontSize="12" MouseDown="domain_MouseDown"/>
                 </StackPanel>
                 <Grid x:Name="userinfo_grid" Visibility="Visible">
                     <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="10,12,0,10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp">
