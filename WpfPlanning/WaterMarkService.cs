@@ -65,6 +65,8 @@ namespace WpfPlanning
             {
                 control.GotKeyboardFocus += Control_GotKeyboardFocus;
                 control.LostKeyboardFocus += Control_Loaded;
+
+                (control as TextBox).TextChanged += WatermarkService_TextChanged;
             }
 
             if (d is ItemsControl && !(d is ComboBox))
@@ -109,6 +111,18 @@ namespace WpfPlanning
             {
                 ShowWatermark(control);
             }
+        }
+
+        private static void WatermarkService_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Control c = (Control)sender;
+            if (c.IsFocused)
+                return;
+
+            if (ShouldShowWatermark(c))
+                ShowWatermark(c);
+            else
+                RemoveWatermark(c);
         }
 
         /// <summary>
