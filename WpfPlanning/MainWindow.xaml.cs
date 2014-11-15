@@ -338,7 +338,7 @@ namespace WpfPlanning
 
                         main.table.Visibility = me.HasVoted ? Visibility.Collapsed : Visibility.Visible;
 
-                        var allvoted = (from WpfVote v in main.votes.Items where !v.HasVoted select v).Any();
+                        var allvoted = !(from WpfVote v in main.votes.Items where !v.HasVoted select v).Any();
 
                         if (allvoted && main.game.Host)
                             main.github.Visibility = Visibility.Visible;
