@@ -26,9 +26,6 @@ namespace WpfPlanning
         private bool editingDescription = false;
         private bool editingTitle = false;
 
-        private Brush initialBorder;
-        private Thickness initialBorderThickness;
-
         private Game game = null;
         private Match newGameMatch = null;
 
@@ -40,9 +37,6 @@ namespace WpfPlanning
 
             this.worker = new VotesWorker(this);
             this.Closing += (s, e) => worker.CancelAsync();
-
-            this.initialBorder = description_border.BorderBrush;
-            this.initialBorderThickness = description_border.BorderThickness;
 
             this.table.CardSelected += table_CardSelected;
 
@@ -65,15 +59,11 @@ namespace WpfPlanning
         {
             editingDescription = true;
 
-            description_border.BorderBrush = Brushes.Orange;
-            description_border.BorderThickness = new Thickness(2);
         }
         void description_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
-                description_border.BorderBrush = initialBorder;
-                description_border.BorderThickness = initialBorderThickness;
 
                 game.Description = description.Text;
                 editingDescription = false;
@@ -81,8 +71,6 @@ namespace WpfPlanning
             }
             else if (e.Key == Key.Escape)
             {
-                description_border.BorderBrush = initialBorder;
-                description_border.BorderThickness = initialBorderThickness;
 
                 description.Text = game.Description;
                 editingDescription = false;
@@ -94,15 +82,11 @@ namespace WpfPlanning
         {
             editingTitle = true;
 
-            issuetitle_border.BorderBrush = Brushes.Orange;
-            issuetitle_border.BorderThickness = new Thickness(2);
         }
         void issuetitle_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
-                issuetitle_border.BorderBrush = initialBorder;
-                issuetitle_border.BorderThickness = initialBorderThickness;
 
                 game.Title = issuetitle.Text;
                 editingTitle = false;
@@ -110,8 +94,6 @@ namespace WpfPlanning
             }
             else if (e.Key == Key.Escape)
             {
-                issuetitle_border.BorderBrush = initialBorder;
-                issuetitle_border.BorderThickness = initialBorderThickness;
 
                 issuetitle.Text = game.Description;
                 editingTitle = false;
