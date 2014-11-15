@@ -157,11 +157,21 @@ namespace WpfPlanning
             }
             else
             {
-                creategame.Content = "Join";
-                creategame.IsEnabled = true;
-                newGameMatch = m;
-                game_errormessage.Content = "";
-                return;
+                if (Game.Exists(m.Groups["domain"].Value, new Id(m.Groups["id"].Value)))
+                {
+                    creategame.Content = "Join";
+                    creategame.IsEnabled = true;
+                    newGameMatch = m;
+                    game_errormessage.Content = "";
+                    return;
+                }
+                else
+                {
+                    creategame.Content = "";
+                    creategame.IsEnabled = false;
+                    game_errormessage.Content = "You must supply a valid game ID...";
+                    return;
+                }
             }
         }
         private void login_KeyUp(object sender, KeyEventArgs e)
