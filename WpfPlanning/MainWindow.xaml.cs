@@ -329,7 +329,13 @@ namespace WpfPlanning
                         if (somethingChanged)
                             main.votes.ItemTemplateSelector = new VoteDataTemplateSelector();
 
-                        var me = (from WpfVote v in main.votes.Items where v.UserName == main.game.User.Name select v).First();
+                        var me = (from WpfVote v in main.votes.Items where v.UserName == main.game.User.Name select v).FirstOrDefault();
+                        if (me == null)
+                        {
+                            main.Close();
+                            return;
+                        }
+
                         main.table.Visibility = me.HasVoted ? Visibility.Collapsed : Visibility.Visible;
 
                         var allvoted = (from WpfVote v in main.votes.Items where !v.HasVoted select v).Any();
