@@ -30,6 +30,11 @@ namespace WpfPlanning
         private Match newGameMatch = null;
         private string newGameDomain;
 
+        private bool GameStarted
+        {
+            get { return game != null; }
+        }
+
         private VotesWorker worker;
 
         public MainWindow()
@@ -61,6 +66,7 @@ namespace WpfPlanning
         {
             editingDescription = true;
 
+            description_hint.Visibility = System.Windows.Visibility.Visible;
         }
         void description_KeyUp(object sender, KeyEventArgs e)
         {
@@ -173,18 +179,40 @@ namespace WpfPlanning
 
             btnClear.Visibility = game.Host ? Visibility.Visible : Visibility.Collapsed;
 
-            title.Content = "Planning @ " + domain;
-            title.IsEnabled = true;
+            userinfo_grid.Visibility = System.Windows.Visibility.Collapsed;
+            this.domain.Content = "Planning @ " + domain;
+            this.domain_explanation.Content = "Click to copy the game ID to clipboard...";
 
-            login.Visibility = System.Windows.Visibility.Collapsed;
-            gamegrid.IsEnabled = true;
+            gamegrid.Visibility = System.Windows.Visibility.Visible;
 
             worker.RunWorkerAsync();
         }
 
-        private void title_MouseDown(object sender, MouseButtonEventArgs e)
+        private void domain_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Clipboard.SetText(game.Id.Hash);
+            if (sender != domain)
+            {
+                newGameDomain = (sender as Label).Content as string;
+                domain.Content = newGameDomain;
+
+                login_TextChanged(null, null);
+
+                domain_display.Visibility = System.Windows.Visibility.Visible;
+                userinfo_grid.Visibility = System.Windows.Visibility.Visible;
+                domain_list.Visibility = System.Windows.Visibility.Collapsed;
+                return;
+            }
+
+            if (!GameStarted)
+            {
+                domain_display.Visibility = System.Windows.Visibility.Collapsed;
+                userinfo_grid.Visibility = System.Windows.Visibility.Collapsed;
+                domain_list.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                Clipboard.SetText(game.Id.Hash);
+            }
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
