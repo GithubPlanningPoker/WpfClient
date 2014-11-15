@@ -11,10 +11,8 @@
                 <Style TargetType="{x:Type Rectangle}">
                     <Setter Property="Fill" Value="White"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=MainGrid,
-                                                   Path=IsMouseOver}" 
-                                 Value="True">
-                            <Setter Property="Fill" Value="Gray" />
+                        <DataTrigger Binding="{Binding ElementName=MainGrid, Path=IsMouseOver}" Value="True">
+                            <Setter Property="Fill" Value="#FFC7F2FF" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
