@@ -83,21 +83,37 @@
                         </ListBox>
                     </DockPanel>
                 </Border>
-                <Grid DockPanel.Dock="Top" Margin="5,10,10,0">
-                    <TextBox x:Name="issuetitle" FontSize="22" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="issuetitle_GotKeyboardFocus" LostKeyboardFocus="issuetitle_LostKeyboardFocus" KeyUp="issuetitle_KeyUp">
+                <Grid Margin="5,10,10,0">
+                    <TextBox x:Name="issuetitle" Background="Transparent" FontSize="22" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="issuetitle_GotKeyboardFocus" LostKeyboardFocus="issuetitle_LostKeyboardFocus" KeyUp="issuetitle_KeyUp" VerticalAlignment="Top">
                         <local:WatermarkService.Watermark>
                             <TextBlock Margin="3,1" FontSize="22">No issue title...</TextBlock>
                         </local:WatermarkService.Watermark>
                     </TextBox>
-                    <Label x:Name="title_hint" Margin="0,12,0,-10" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" FontSize="9" Content="Ctrl+Enter will send your title to the server..."/>
-                </Grid>
-                <Grid Margin="5,10,10,10">
-                    <TextBox x:Name="description" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" LostKeyboardFocus="description_LostKeyboardFocus" KeyUp="description_KeyUp">
+                    <Label x:Name="title_hint" Margin="0,18,0,0" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" FontSize="9" VerticalAlignment="Top">
+                        <Label.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Ctrl+Enter" FontWeight="Bold" Margin="0" Padding="0"/>
+                                <Label Content=" sends title to server | " Margin="0" Padding="0"/>
+                                <Label Content="Esc" FontWeight="Bold" Margin="0" Padding="0"/>
+                                <Label Content=" cancels" Margin="0" Padding="0"/>
+                            </StackPanel>
+                        </Label.Content>
+                    </Label>
+                    <TextBox x:Name="description" Background="Transparent" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" LostKeyboardFocus="description_LostKeyboardFocus" KeyUp="description_KeyUp" Margin="0,36,0,10">
                         <local:WatermarkService.Watermark>
                             <TextBlock Margin="5,3">No issue description...</TextBlock>
                         </local:WatermarkService.Watermark>
                     </TextBox>
-                    <Label x:Name="description_hint" Margin="0,0,0,0" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="9" Content="Ctrl+Enter will send your description to the server..."/>
+                    <Label x:Name="description_hint" Margin="0,0,0,0" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="9">
+                        <Label.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Ctrl+Enter" FontWeight="Bold" Margin="0" Padding="0"/>
+                                <Label Content=" sends description to server | " Margin="0" Padding="0"/>
+                                <Label Content="Esc" FontWeight="Bold" Margin="0" Padding="0"/>
+                                <Label Content=" cancels" Margin="0" Padding="0"/>
+                            </StackPanel>
+                        </Label.Content>
+                    </Label>
                 </Grid>
             </DockPanel>
         </DockPanel>
