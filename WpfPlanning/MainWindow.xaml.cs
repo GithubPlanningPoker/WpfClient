@@ -95,7 +95,7 @@ namespace WpfPlanning
             else if (e.Key == Key.Escape)
             {
 
-                issuetitle.Text = game.Description;
+                issuetitle.Text = game.Title;
                 editingTitle = false;
                 Keyboard.ClearFocus();
             }
