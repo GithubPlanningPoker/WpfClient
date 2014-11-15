@@ -344,14 +344,18 @@ namespace WpfPlanning
                     case 1:
                         if (!main.editingDescription)
                         {
-                            main.description.Text = e.UserState as string;
+                            string text = e.UserState as string;
+                            if (main.description.Text != text)
+                                main.description.Text = text;
                         }
                         break;
 
                     case 2:
                         if (!main.editingTitle)
                         {
-                            main.issuetitle.Text = e.UserState as string;
+                            string text = e.UserState as string;
+                            if (main.issuetitle.Text != text)
+                                main.issuetitle.Text = text;
                         }
                         break;
                 }
