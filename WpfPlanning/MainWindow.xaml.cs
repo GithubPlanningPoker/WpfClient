@@ -28,6 +28,7 @@ namespace WpfPlanning
 
         private Game game = null;
         private Match newGameMatch = null;
+        private string newGameDomain;
 
         private VotesWorker worker;
 
@@ -40,6 +41,7 @@ namespace WpfPlanning
 
             this.table.CardSelected += table_CardSelected;
 
+            this.newGameDomain = domain.Content as string;
             username.Text = Properties.Settings.Default.username;
         }
 
@@ -108,14 +110,9 @@ namespace WpfPlanning
             base.OnMouseDown(e);
         }
 
-        private void domain_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            login_TextChanged(null, null);
-        }
-
         private void login_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (creategame == null || domain == null || gameid == null)
+            if (creategame == null || gameid == null)
                 return;
 
             string usr = username.Text.Trim();
@@ -126,16 +123,14 @@ namespace WpfPlanning
                 return;
             }
 
-            var item = (domain.SelectedItem as ListBoxItem);
-            string selectedDomain = item == null ? domain.Text as string : (item.Content as string);
-            if (selectedDomain == null)
+            if (newGameDomain == null)
             {
                 creategame.Content = "";
                 creategame.IsEnabled = false;
                 return;
             }
 
-            string gameURL = selectedDomain + gameid.Text.Trim();
+            string gameURL = newGameDomain + gameid.Text.Trim();
             Match m = Regex.Match(gameURL, @"^(?<domain>http://.*/)game(/(?<id>[a-z0-9]{32}))?/?$");
             if (!m.Success)
             {
