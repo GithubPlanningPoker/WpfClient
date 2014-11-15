@@ -56,7 +56,7 @@
                 <Border BorderBrush="#33000000" DockPanel.Dock="Left" Width="140" Margin="10,10,5,10" BorderThickness="1">
                     <DockPanel LastChildFill="True" Background="White">
                         <Button x:Name="btnClear" Visibility="Collapsed" DockPanel.Dock="Top" Content="Clear Votes" Margin="5" Click="btnClear_Click"/>
-                        <ListBox x:Name="votes" BorderThickness="0" Margin="0" ItemTemplateSelector="{StaticResource voteDataTemplateSelector}">
+                        <ListBox x:Name="votes" BorderThickness="0" Margin="0" ItemTemplateSelector="{StaticResource voteDataTemplateSelector}" ContextMenuOpening="votes_ContextMenuOpening">
                             <ListBox.Resources>
                                 <DataTemplate x:Key="HiddenVote">
                                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Margin="5">
@@ -77,6 +77,11 @@
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.Resources>
+                            <ListBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem x:Name="kick_menuitem" Click="kick_Click"/>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
                         </ListBox>
                     </DockPanel>
                 </Border>

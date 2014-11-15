@@ -357,5 +357,29 @@ namespace WpfPlanning
                 }
             }
         }
+
+        private void votes_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            if (votes.SelectedItem == null)
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                var user = votes.SelectedItem as WpfVote;
+                kick_menuitem.Header = "Kick " + user.UserName;
+                kick_menuitem.Tag = user;
+
+                if (user.UserName == game.User.Name)
+                    e.Handled = true;
+            }
+        }
+
+        private void kick_Click(object sender, RoutedEventArgs e)
+        {
+            var vote = kick_menuitem.Tag as WpfVote;
+            if (vote != null)
+                game.Kick(vote.UserName);
+        }
     }
 }
