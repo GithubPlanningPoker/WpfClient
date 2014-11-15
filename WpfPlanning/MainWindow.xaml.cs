@@ -126,6 +126,7 @@ namespace WpfPlanning
             {
                 creategame.Content = "";
                 creategame.IsEnabled = false;
+                game_errormessage.Content = "You must supply a username...";
                 return;
             }
 
@@ -133,6 +134,7 @@ namespace WpfPlanning
             {
                 creategame.Content = "";
                 creategame.IsEnabled = false;
+                game_errormessage.Content = "You must select a game domain...";
                 return;
             }
 
@@ -142,6 +144,7 @@ namespace WpfPlanning
             {
                 creategame.Content = "";
                 creategame.IsEnabled = false;
+                game_errormessage.Content = "You must supply a valid game ID...";
                 return;
             }
             else if (!m.Groups["id"].Success)
@@ -149,6 +152,7 @@ namespace WpfPlanning
                 creategame.Content = "Create";
                 creategame.IsEnabled = true;
                 newGameMatch = m;
+                game_errormessage.Content = "";
                 return;
             }
             else
@@ -156,6 +160,7 @@ namespace WpfPlanning
                 creategame.Content = "Join";
                 creategame.IsEnabled = true;
                 newGameMatch = m;
+                game_errormessage.Content = "";
                 return;
             }
         }

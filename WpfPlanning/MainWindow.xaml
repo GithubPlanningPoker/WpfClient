@@ -47,6 +47,7 @@
                             <TextBlock Margin="5,3">Insert game ID if you are joining a game...</TextBlock>
                         </local:WatermarkService.Watermark>
                     </TextBox>
+                    <Label x:Name="game_errormessage" FontSize="10" Foreground="#FFBB0000" HorizontalAlignment="Right" Margin="0,0,10,-5" VerticalAlignment="Bottom" Background="{x:Null}"/>
                     <Button x:Name="creategame" IsEnabled="False" Content="" Margin="0,12,10,10" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="creategame_Click"/>
                 </Grid>
             </StackPanel>
