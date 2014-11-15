@@ -86,7 +86,7 @@
                     </DockPanel>
                 </Border>
                 <Grid DockPanel.Dock="Top" Margin="5,10,10,0">
-                    <TextBox x:Name="issuetitle" FontSize="22" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="issuetitle_GotKeyboardFocus" KeyUp="issuetitle_KeyUp">
+                    <TextBox x:Name="issuetitle" FontSize="22" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="issuetitle_GotKeyboardFocus" LostKeyboardFocus="issuetitle_LostKeyboardFocus" KeyUp="issuetitle_KeyUp">
                         <local:WatermarkService.Watermark>
                             <TextBlock Margin="3,1" FontSize="22">No issue title...</TextBlock>
                         </local:WatermarkService.Watermark>
@@ -94,7 +94,7 @@
                     <Label x:Name="title_hint" Margin="0,12,0,-10" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" FontSize="9" Content="Ctrl+Enter will send your title to the server..."/>
                 </Grid>
                 <Grid Margin="5,10,10,10">
-                    <TextBox x:Name="description" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" KeyUp="description_KeyUp">
+                    <TextBox x:Name="description" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" LostKeyboardFocus="description_LostKeyboardFocus" KeyUp="description_KeyUp">
                         <local:WatermarkService.Watermark>
                             <TextBlock Margin="5,3">No issue description...</TextBlock>
                         </local:WatermarkService.Watermark>

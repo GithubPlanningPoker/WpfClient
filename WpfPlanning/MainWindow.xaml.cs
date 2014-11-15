@@ -65,48 +65,49 @@ namespace WpfPlanning
         void description_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             editingDescription = true;
-
             description_hint.Visibility = System.Windows.Visibility.Visible;
+        }
+        private void description_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            description_hint.Visibility = System.Windows.Visibility.Hidden;
+            description.Text = game.Description;
+            editingDescription = false;
         }
         void description_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
-
+                description_hint.Visibility = System.Windows.Visibility.Hidden;
                 game.Description = description.Text;
                 editingDescription = false;
                 Keyboard.ClearFocus();
             }
             else if (e.Key == Key.Escape)
-            {
-
-                description.Text = game.Description;
-                editingDescription = false;
                 Keyboard.ClearFocus();
-            }
         }
 
         void issuetitle_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             editingTitle = true;
-
+            title_hint.Visibility = System.Windows.Visibility.Visible;
+        }
+        private void issuetitle_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            title_hint.Visibility = System.Windows.Visibility.Hidden;
+            issuetitle.Text = game.Title;
+            editingTitle = false;
         }
         void issuetitle_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
-
+                title_hint.Visibility = System.Windows.Visibility.Hidden;
                 game.Title = issuetitle.Text;
                 editingTitle = false;
                 Keyboard.ClearFocus();
             }
             else if (e.Key == Key.Escape)
-            {
-
-                issuetitle.Text = game.Title;
-                editingTitle = false;
                 Keyboard.ClearFocus();
-            }
         }
 
         protected override void OnMouseDown(MouseButtonEventArgs e)
