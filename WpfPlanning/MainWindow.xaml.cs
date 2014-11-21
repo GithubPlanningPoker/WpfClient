@@ -113,6 +113,7 @@ namespace WpfPlanning
         {
             editingDescription = true;
             description_hint.Visibility = System.Windows.Visibility.Visible;
+            description.Tag = description.Text;
         }
         private void description_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
@@ -137,6 +138,7 @@ namespace WpfPlanning
         {
             editingTitle = true;
             title_hint.Visibility = System.Windows.Visibility.Visible;
+            issuetitle.Tag = issuetitle.Text;
         }
         private void issuetitle_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
@@ -396,22 +398,34 @@ namespace WpfPlanning
                         break;
 
                     case 1:
-                        if (!main.editingDescription)
                         {
-                            string text = e.UserState as string;
-                            if (main.description.Text != text)
+                            string text = e.UserState as string ?? string.Empty;
+                            bool localChanged = main.description.Text != text;
+                            bool remoteChanged = main.description.Tag as string != text;
+
+                            if (!main.editingDescription && localChanged)
                                 main.description.Text = text;
+
+                            main.description_update.Visibility = remoteChanged && main.editingDescription
+                                ? Visibility.Visible
+                                : Visibility.Hidden;
+                            break;
                         }
-                        break;
 
                     case 2:
-                        if (!main.editingTitle)
                         {
-                            string text = e.UserState as string;
-                            if (main.issuetitle.Text != text)
+                            string text = e.UserState as string ?? string.Empty;
+                            bool localChanged = main.issuetitle.Text != text;
+                            bool remoteChanged = main.issuetitle.Tag as string != text;
+
+                            if (!main.editingTitle && localChanged)
                                 main.issuetitle.Text = text;
+
+                            main.title_update.Visibility = remoteChanged && main.editingTitle
+                                ? Visibility.Visible
+                                : Visibility.Hidden;
+                            break;
                         }
-                        break;
                 }
             }
         }
