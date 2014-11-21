@@ -461,6 +461,10 @@ namespace WpfPlanning
 
         private void exit_Click(object sender, RoutedEventArgs e)
         {
+            if (game == null)
+                this.Close();
+            else
+                game.Leave();
         }
     }
 }
