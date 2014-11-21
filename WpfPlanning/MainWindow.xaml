@@ -92,7 +92,7 @@
                             <TextBlock Margin="3,1" FontSize="22">No issue title...</TextBlock>
                         </local:WatermarkService.Watermark>
                     </TextBox>
-                    <Label x:Name="title_hint" Margin="0,18,0,0" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" FontSize="9" VerticalAlignment="Top">
+                    <Label x:Name="title_hint" Margin="0,20,0,0" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" FontSize="9" VerticalAlignment="Top">
                         <Label.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Ctrl+Enter" FontWeight="Bold" Margin="0" Padding="0"/>
@@ -102,13 +102,14 @@
                             </StackPanel>
                         </Label.Content>
                     </Label>
-                    <TextBox x:Name="description" Background="Transparent" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" Margin="0,36,0,10"
+                    <Label x:Name="title_update" Margin="0,30,0,0" Visibility="Hidden" HorizontalAlignment="Right" FontSize="9" FontWeight="Bold" VerticalAlignment="Top" Foreground="#E5FF1400" Content="There is a new title on the server..."/>
+                    <TextBox x:Name="description" Background="Transparent" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" Margin="0,56,0,30"
                              GotKeyboardFocus="description_GotKeyboardFocus" LostKeyboardFocus="description_LostKeyboardFocus" KeyUp="description_KeyUp">
                         <local:WatermarkService.Watermark>
                             <TextBlock Margin="5,3">No issue description...</TextBlock>
                         </local:WatermarkService.Watermark>
                     </TextBox>
-                    <Label x:Name="description_hint" Margin="0,0,0,0" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="9">
+                    <Label x:Name="description_hint" Margin="0,0,0,10" Visibility="Hidden" Opacity="0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="9">
                         <Label.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Ctrl+Enter" FontWeight="Bold" Margin="0" Padding="0"/>
@@ -118,6 +119,7 @@
                             </StackPanel>
                         </Label.Content>
                     </Label>
+                    <Label x:Name="description_update" Margin="0,0,0,0" Visibility="Hidden" HorizontalAlignment="Right" FontSize="9" FontWeight="Bold" VerticalAlignment="Bottom" Foreground="#E5FF1400" Content="There is a new description on the server..."/>
                 </Grid>
             </DockPanel>
         </DockPanel>
