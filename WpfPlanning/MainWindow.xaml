@@ -55,7 +55,8 @@
                     <Label Content="http://ghpp.brunothalmann.com/game/" Style="{StaticResource clickableLabel}" Padding="5" FontSize="12" MouseDown="domain_MouseDown"/>
                 </StackPanel>
                 <Grid x:Name="userinfo_grid" Visibility="Visible">
-                    <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="10,12,0,10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#33000000" TextChanged="login_TextChanged" KeyUp="login_KeyUp">
+                    <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="10,12,0,10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="#33000000"
+                             TextChanged="login_TextChanged" KeyUp="login_KeyUp">
                         <local:WatermarkService.Watermark>
                             <TextBlock Margin="5,3">Username...</TextBlock>
                         </local:WatermarkService.Watermark>
@@ -84,7 +85,9 @@
                     </DockPanel>
                 </Border>
                 <Grid Margin="5,10,10,0">
-                    <TextBox x:Name="issuetitle" Background="Transparent" FontSize="22" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="issuetitle_GotKeyboardFocus" LostKeyboardFocus="issuetitle_LostKeyboardFocus" KeyUp="issuetitle_KeyUp" VerticalAlignment="Top">
+                    <TextBox x:Name="issuetitle" Background="Transparent" FontSize="22" BorderThickness="0" VerticalAlignment="Top"
+                             TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False"
+                             GotKeyboardFocus="issuetitle_GotKeyboardFocus" LostKeyboardFocus="issuetitle_LostKeyboardFocus" KeyUp="issuetitle_KeyUp">
                         <local:WatermarkService.Watermark>
                             <TextBlock Margin="3,1" FontSize="22">No issue title...</TextBlock>
                         </local:WatermarkService.Watermark>
@@ -99,7 +102,8 @@
                             </StackPanel>
                         </Label.Content>
                     </Label>
-                    <TextBox x:Name="description" Background="Transparent" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" GotKeyboardFocus="description_GotKeyboardFocus" LostKeyboardFocus="description_LostKeyboardFocus" KeyUp="description_KeyUp" Margin="0,36,0,10">
+                    <TextBox x:Name="description" Background="Transparent" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="False" BorderThickness="0" Margin="0,36,0,10"
+                             GotKeyboardFocus="description_GotKeyboardFocus" LostKeyboardFocus="description_LostKeyboardFocus" KeyUp="description_KeyUp">
                         <local:WatermarkService.Watermark>
                             <TextBlock Margin="5,3">No issue description...</TextBlock>
                         </local:WatermarkService.Watermark>
