@@ -115,8 +115,8 @@ namespace WpfPlanning
 
         private static void WatermarkService_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Control c = (Control)sender;
-            if (c.IsFocused)
+            TextBox c = (TextBox)sender;
+            if (c.IsKeyboardFocused)
                 return;
 
             if (ShouldShowWatermark(c))
