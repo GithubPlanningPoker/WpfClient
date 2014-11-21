@@ -207,10 +207,19 @@ namespace WpfPlanning
             {
                 if (Game.Exists(m.Groups["domain"].Value, new Id(m.Groups["id"].Value)))
                 {
-                    creategame.Content = "Join";
-                    creategame.IsEnabled = true;
-                    newGameMatch = m;
-                    game_errormessage.Content = "";
+                    if (Game.HasUser(m.Groups["domain"].Value, new Id(m.Groups["id"].Value), username.Text))
+                    {
+                        creategame.Content = "";
+                        creategame.IsEnabled = false;
+                        game_errormessage.Content = "You must supply a unique username - " + username.Text + " is taken.";
+                    }
+                    else
+                    {
+                        creategame.Content = "Join";
+                        creategame.IsEnabled = true;
+                        newGameMatch = m;
+                        game_errormessage.Content = "";
+                    }
                 }
                 else
                 {
