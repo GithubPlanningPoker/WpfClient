@@ -195,7 +195,6 @@ namespace WpfPlanning
                 creategame.Content = "";
                 creategame.IsEnabled = false;
                 game_errormessage.Content = "You must supply a valid game ID...";
-                return;
             }
             else if (!m.Groups["id"].Success)
             {
@@ -203,7 +202,6 @@ namespace WpfPlanning
                 creategame.IsEnabled = true;
                 newGameMatch = m;
                 game_errormessage.Content = "";
-                return;
             }
             else
             {
@@ -213,14 +211,12 @@ namespace WpfPlanning
                     creategame.IsEnabled = true;
                     newGameMatch = m;
                     game_errormessage.Content = "";
-                    return;
                 }
                 else
                 {
                     creategame.Content = "";
                     creategame.IsEnabled = false;
                     game_errormessage.Content = "You must supply a valid game ID...";
-                    return;
                 }
             }
         }
