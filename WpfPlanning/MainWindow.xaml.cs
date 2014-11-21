@@ -458,5 +458,9 @@ namespace WpfPlanning
             if (vote != null)
                 game.Kick(vote.UserName);
         }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
