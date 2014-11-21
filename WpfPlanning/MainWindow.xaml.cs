@@ -50,6 +50,53 @@ namespace WpfPlanning
             username.Text = Properties.Settings.Default.username;
         }
 
+        private string deactiveText = "";
+        private int deactiveStart, deactiveLength;
+        private bool deactiveTitleEdit = false;
+        private bool deactiveDescriptionEdit = false;
+
+        protected override void OnDeactivated(EventArgs e)
+        {
+            if (editingTitle)
+            {
+                deactiveTitleEdit = true;
+                deactiveText = issuetitle.Text;
+                deactiveStart = issuetitle.SelectionStart;
+                deactiveLength = issuetitle.SelectionLength;
+            }
+            else if (editingDescription)
+            {
+                deactiveDescriptionEdit = true;
+                deactiveText = description.Text;
+                deactiveStart = description.SelectionStart;
+                deactiveLength = description.SelectionLength;
+            }
+
+            base.OnDeactivated(e);
+        }
+
+        protected override void OnActivated(EventArgs e)
+        {
+            if (deactiveTitleEdit)
+            {
+                deactiveTitleEdit = false;
+                issuetitle.Focus();
+                issuetitle.Text = deactiveText;
+                issuetitle.SelectionStart = deactiveStart;
+                issuetitle.SelectionLength = deactiveLength;
+            }
+            else if (deactiveDescriptionEdit)
+            {
+                deactiveDescriptionEdit = false;
+                description.Focus();
+                description.Text = deactiveText;
+                description.SelectionStart = deactiveStart;
+                description.SelectionLength = deactiveLength;
+            }
+
+            base.OnActivated(e);
+        }
+
         protected override void OnClosing(CancelEventArgs e)
         {
             Properties.Settings.Default.username = username.Text;
