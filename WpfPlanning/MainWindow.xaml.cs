@@ -438,9 +438,9 @@ namespace WpfPlanning
         private void votes_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             if (votes.SelectedItem == null)
-            {
                 e.Handled = true;
-            }
+            else if (!game.Host)
+                e.Handled = true;
             else
             {
                 var user = votes.SelectedItem as WpfVote;
