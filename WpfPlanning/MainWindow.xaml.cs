@@ -252,6 +252,7 @@ namespace WpfPlanning
             userinfo_grid.Visibility = System.Windows.Visibility.Collapsed;
             this.domain.Content = "Planning @ " + domain;
             this.domain_explanation.Content = "Click to copy the game ID to clipboard...";
+            this.Title += " @ " + domain;
 
             gamegrid.Visibility = System.Windows.Visibility.Visible;
 
